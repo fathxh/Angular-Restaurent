@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// creating self boostrap class
+.m {
+    &l{
+        &-1{
+            margin-left: 4px;
+        }
+        &-2{
+            margin-left: 8px;
+        }
+        &-3{
+            margin-left: 12px;
+        }
+        &-4{
+            margin-left: 16px;
+        }
+        &-5{
+            margin-left: 44px;
+        }
+        &-6{
+            margin-left: 66px;
+        }
+    }
+}
