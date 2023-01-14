@@ -1,23 +1,20 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AdminComponent } from './admin/admin.component';
+import { ListProductsComponent } from './list-products/list-products.component';
+import { AddProductsComponent } from './add-products/add-products.component';
 import { AdminRoutingModule } from './admin-routing.module';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatTableModule} from '@angular/material/table';
-import { ListProductComponent } from './list-product/list-product.component';
+import { AdminComponent } from './admin/admin.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   declarations: [
-    AdminComponent,
-    ListProductComponent
+    ListProductsComponent,
+    AddProductsComponent,
+    AdminComponent
   ],
   imports: [
-    CommonModule,
     AdminRoutingModule,
-    MatButtonModule,
-    MatInputModule,
-    MatTableModule
+    SharedModule
   ]
 })
 export class AdminModule { }

@@ -9,8 +9,11 @@ import { ProductService } from '../service/product.service';
 export class ProductListComponent implements OnInit{
   foodItems:any =[];
 
-  constructor(public ps:ProductService){
 
+  constructor(public ps:ProductService){
+    this.ps.productNotifier.subscribe(()=>{
+      this.getFoodItems()
+    })
   }
 
   ngOnInit(){
