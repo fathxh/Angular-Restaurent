@@ -10,9 +10,9 @@ import { AddProductsComponent } from './../add-products/add-products.component'
 export class AdminComponent {
 
   name: string = '';
+  search: string=''
 
   constructor(public dialog: MatDialog) {}
-
   openAddProduct() {
     const dialogRef = this.dialog.open(AddProductsComponent, {
       height: '350px',
@@ -24,5 +24,9 @@ export class AdminComponent {
       console.log(result);
     });
   }
+  onChange(){
+    
+  }
+
 
 }

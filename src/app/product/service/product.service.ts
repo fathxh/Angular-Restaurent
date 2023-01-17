@@ -8,6 +8,7 @@ import{ Observable,of,Subject } from 'rxjs'
 export class ProductService {
 
   productNotifier = new Subject<void>()
+  onDelete = new Subject<void>()
   products=fooditems;
   constructor() { }
 
@@ -19,7 +20,7 @@ export class ProductService {
     const newProduct=Object.assign({},{
       "name": data.name,
         "description":data.description,
-        "id": 2,
+        "id": 11,
         "price": data.price,
         "iconName": 'biriyani',
         "rating": 3
@@ -27,6 +28,18 @@ export class ProductService {
     this.products.push(newProduct)
     console.log(this.products);
     this.productNotifier.next()
+
+  }
+  deleteProduct(id:any){
+    this.products.splice(this.products.findIndex(a => a.id ===id) , 1)
+    console.log(this.products);
+    this.onDelete.next()
+
+  }
+  editProduct(id:any){
+    var data=this.products.splice(this.products.findIndex(a => a.id ===id) , 1)
+    console.log(this.products);
+    this.onDelete.next()
 
   }
 

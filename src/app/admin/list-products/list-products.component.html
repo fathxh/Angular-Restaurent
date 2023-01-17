@@ -23,11 +23,11 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let element">
-        <span class="cp">
-          <img src="assets/images/icons/nav-bar/edit.svg" alt="Edit" width="16px">
+        <span class="cp" (click)="onEdit(element.id)">
+          <img src="/assets/photo/edit.svg" alt="Edit" width="16px">
         </span>
-        <span style="margin-left: 8px;" class="cp">
-          <img src="assets/images/icons/nav-bar/delete.svg" alt="Delete" width="14px">
+        <span style="margin-left: 8px;" class="cp" (click)="onDelete(element.id)">
+          <img src="/assets/photo/delete.svg" alt="Delete" width="14px">
         </span>
       </td>
     </ng-container>
