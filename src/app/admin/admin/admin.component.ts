@@ -27,6 +27,14 @@ export class AdminComponent {
   onChange(){
     
   }
+  onEdit(item:any){
+    item.isEdit=true;
+    this.dialog.open(AddProductsComponent, {
+      height: '350px',
+      width: '600px',
+      data: item
+    });
+  }
 
 
 }

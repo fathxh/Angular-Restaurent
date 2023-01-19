@@ -36,11 +36,16 @@ export class ProductService {
     this.onDelete.next()
 
   }
-  editProduct(id:any){
-    var data=this.products.splice(this.products.findIndex(a => a.id ===id) , 1)
-    console.log(this.products);
-    this.onDelete.next()
-
+  
+  updateProduct(product:any){
+    this.products.forEach((item:any)=>{
+      if(product.id === item.id){
+        item.name=product.name;
+        item.price=product.price;
+        item.description=product.description;
+      }
+    })
+    this.productNotifier.next();
   }
 
 }
