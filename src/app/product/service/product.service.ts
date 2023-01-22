@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { fooditems } from '../data/food-items';
 import{ Observable,of,Subject } from 'rxjs'
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,25 +11,24 @@ export class ProductService {
   productNotifier = new Subject<void>()
   onDelete = new Subject<void>()
   products=fooditems;
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
 
   getFoodItems(): Observable<any> {
-    return of(this.products)
+    return this.http.get('http://localhost:3000/products/list');
   }
-  addproduct(data:any){
-    const newProduct=Object.assign({},{
-      "name": data.name,
-        "description":data.description,
-        "id": 11,
-        "price": data.price,
-        "iconName": 'biriyani',
-        "rating": 3
-    })
-    this.products.push(newProduct)
-    console.log(this.products);
-    this.productNotifier.next()
 
+
+  addproduct(data:any): Observable<any>{
+    const newProduct=Object.assign({},{
+      name: data.name,
+      description:data.description,
+      id: 2,
+      price: data.price,
+      iconName: 'biriyani',
+      rating: 4
+    })
+    return this.http.post('http://localhost:3000/products', newProduct);
   }
   deleteProduct(id:any){
     this.products.splice(this.products.findIndex(a => a.id ===id) , 1)

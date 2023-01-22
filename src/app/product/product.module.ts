@@ -4,6 +4,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ProductRoutingModule } from './product-routing.module';
+import { HttpClientModule } from "@angular/common/http";
 
 
 
@@ -15,7 +16,8 @@ import { ProductRoutingModule } from './product-routing.module';
     CommonModule,
     MatCardModule,
     MatGridListModule,
-    ProductRoutingModule
+    ProductRoutingModule,
+    HttpClientModule
   ],
   exports:[
     ProductListComponent

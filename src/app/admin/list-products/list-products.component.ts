@@ -53,8 +53,11 @@ displayedColumns: string[] = ['name', 'description', 'price', 'actions'];
     setTimeout(() => {
     this.pageload='completed'
     },0); 
+      console.log(foodItems);
       this.dataSource=foodItems
       this.mainSource=this.dataSource
+    },(err:any)=>{
+      console.log(err);
     });
     
 

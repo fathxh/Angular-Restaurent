@@ -40,9 +40,12 @@ export class AddProductsComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
   onSave(): void {
-   this.service.addproduct({name:this.name,price:this.price,description:this.description})
-   this.dialogRef.close();
+   this.service.addproduct({name:this.name,price:this.price,description:this.description}).subscribe((resp) => {
+    this.dialogRef.close();
+    this.service.productNotifier.next();
+   });
    
   }
   onEdit(): void {
