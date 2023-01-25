@@ -62,11 +62,17 @@ displayedColumns: string[] = ['name', 'description', 'price', 'actions'];
     
 
   }
-  onDelete(id:any){
-    this.productService.deleteProduct(id)
-    this.productService.onDelete.subscribe(()=>{
-      this.getFoodItems()
+  onDelete(id:any){  
+    this.productService.deleteProduct(id).subscribe(()=>{
+      console.log("kadarkaa");
+      
+      this.productService.onDelete.subscribe(()=>{
+        this.getFoodItems()
+      })
+      this.productService.onDelete.next()
+
     })
+   
   }
   onEdit(item:any){
     console.log("edit",item);

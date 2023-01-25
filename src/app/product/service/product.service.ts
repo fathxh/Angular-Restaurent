@@ -30,22 +30,24 @@ export class ProductService {
     })
     return this.http.post('http://localhost:3000/products', newProduct);
   }
-  deleteProduct(id:any){
-    this.products.splice(this.products.findIndex(a => a.id ===id) , 1)
-    console.log(this.products);
-    this.onDelete.next()
+  deleteProduct(productid:any): Observable <any>{
+    const data={id:productid}
+    return this.http.post(`http://localhost:3000/products/delete`,data)
+
+    // this.products.splice(this.products.findIndex(a => a.id ===id) , 1)
+    // console.log(this.products);
 
   }
   
-  updateProduct(product:any){
-    this.products.forEach((item:any)=>{
-      if(product.id === item.id){
-        item.name=product.name;
-        item.price=product.price;
-        item.description=product.description;
-      }
-    })
-    this.productNotifier.next();
+  updateProduct(product:any): Observable <any>{
+    return this.http.put(`http://localhost:3000/products/${product.id}`,product)
+    // this.products.forEach((item:any)=>{
+    //   if(product.id === item.id){
+    //     item.name=product.name;
+    //     item.price=product.price;
+    //     item.description=product.description;
+    //   }
+    // })
   }
 
 }

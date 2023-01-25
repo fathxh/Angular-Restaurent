@@ -8,6 +8,7 @@ export interface DialogData {
   description:any
   isEdit:boolean
   id:number
+  rating:number
 }
 
 @Component({
@@ -20,7 +21,8 @@ export class AddProductsComponent {
   price:any
   description:any
   isEdit=false;
-  id=0
+  id=0;
+  rating=0;
 
   constructor(private service:ProductService,
     public dialogRef: MatDialogRef<AddProductsComponent>,
@@ -31,7 +33,8 @@ export class AddProductsComponent {
     this.name = this.data.name;
     this.price = this.data.price;
     this.description = this.data.description;
-    this.id=this.data.id
+    this.id=this.data.id;
+    this.rating=this.data.rating;
     if(this.data.isEdit){
       this.isEdit=true
     }
@@ -49,7 +52,12 @@ export class AddProductsComponent {
    
   }
   onEdit(): void {
-   this.service.updateProduct({name:this.name,price:this.price,description:this.description,id:this.id})
+    const data={name:this.name,price:this.price,description:this.description,id:this.id,rating:this.rating}
+   this.service.updateProduct(data)
+   .subscribe(()=>{
+    this.service.productNotifier.next();
+   
+   })
    this.dialogRef.close();
    
   }
