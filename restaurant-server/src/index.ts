@@ -21,6 +21,8 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
 
+
+//connecting with database
 const dbUrl = 'mongodb://localhost:27017/foodapp';
 const dbOptions: mongoose.ConnectionOptions = Object.assign({ useNewUrlParser: true });
 

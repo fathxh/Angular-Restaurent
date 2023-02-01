@@ -1,6 +1,8 @@
 import { Component, Input,Output, OnChanges, OnInit, SimpleChanges, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 // import { filter } from 'rxjs';
 import { ProductService } from 'src/app/product/service/product.service';
+import { ConfirmationComponent } from 'src/app/shared/confirmation/confirmation.component';
 
 
 
@@ -20,7 +22,7 @@ displayedColumns: string[] = ['name', 'description', 'price', 'actions'];
   loaded=false;
   pageload='loading'
 
-  constructor(private productService:ProductService){
+  constructor(private productService:ProductService,private dialog:MatDialog){
     this.productService.productNotifier.subscribe(()=>{
       this.getFoodItems()
     })
@@ -56,15 +58,35 @@ displayedColumns: string[] = ['name', 'description', 'price', 'actions'];
       console.log(foodItems);
       this.dataSource=foodItems
       this.mainSource=this.dataSource
+      let maxId=0;
+      foodItems.forEach((item:any) =>{
+        if(item.id>=maxId){
+          maxId=item.id
+        }
+      })
+        this.productService.currentMaxId=maxId
+
     },(err:any)=>{
       console.log(err);
     });
     
 
   }
-  onDelete(id:any){  
-    this.productService.deleteProduct(id).subscribe(()=>{
-      console.log("kadarkaa");
+  onDelete(name:any){ 
+    const dialogRef=this.dialog.open(ConfirmationComponent, {
+      height: '200px',
+      width: '500px',
+      data: {value: name,action:'Delete'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onConfirmDelete(name)
+      }
+      
+    });
+  }
+  onConfirmDelete(name:any){  
+    this.productService.deleteProduct(name).subscribe(()=>{
       
       this.productService.onDelete.subscribe(()=>{
         this.getFoodItems()
@@ -75,7 +97,7 @@ displayedColumns: string[] = ['name', 'description', 'price', 'actions'];
    
   }
   onEdit(item:any){
-    console.log("edit",item);
+    // console.log("edit",item);
     this.editItem.emit(item)
   }
 }

@@ -44,14 +44,26 @@ router.put('/:productId',(req: any, res: any, next:any)=>{
         next(err);
     }
 })
-router.post('/Delete',(req: any, res: any, next:any)=>{
-    try {
-        const foodItem = req.body;
-        ProductModel.deleteOne({ id : foodItem.id })
-        .then((document) => {
-            res.json(document);
-        });
-    } catch (err) {
+// router.post('/Delete',(req: any, res: any, next:any)=>{
+//     try {
+//         const foodItem = req.body;
+//         ProductModel.deleteOne({ name : foodItem.name })
+//         .then((document) => {
+//             res.json(document);
+//         });
+//     } catch (err) {
+//         next(err);
+//     }
+// })
+router.delete('/:productName',(req:any,res:any,next:any)=>{
+    try{
+        const {productName}=req.params;
+        ProductModel.deleteOne({name:productName})
+        .then((result)=>{
+            res.json(result);
+        })
+    
+    } catch(err){
         next(err);
     }
 })

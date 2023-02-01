@@ -7,9 +7,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ConfirmationComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -28,7 +31,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatDialogModule,
     FormsModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    ConfirmationComponent
   ]
 })
 export class SharedModule { }
